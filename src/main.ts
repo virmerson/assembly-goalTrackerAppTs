@@ -1,4 +1,6 @@
 import './style.css'
+import { Goal } from './components/Goal'
+import { Home } from './components/Home'
 
 
 const pageContent = document.getElementById('pageContent') as HTMLDivElement
@@ -8,9 +10,9 @@ const btnGoals =  document.getElementById('btnGoals') as HTMLButtonElement
 
 const loadPage = (page:string)=>{
   if (page==='home'){
-    pageContent.innerHTML = `Bem vindos a Home!`
+    pageContent.innerHTML = Home()
   }else if (page==='goals'){
-    pageContent.innerHTML = `Bem vindos a Goals!` 
+    pageContent.innerHTML = Goal()
   }
 }
 
