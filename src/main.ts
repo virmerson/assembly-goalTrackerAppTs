@@ -1,18 +1,23 @@
 import './style.css'
-import { Goal } from './components/Goal'
-import { Home } from './components/Home'
+import { GoalPage, renderGoalList, setUpGoalEvents } from './components/Goal'
+import { HomePage } from './components/Home'
+import { GoalService } from './services/GoalService'
 
 
 const pageContent = document.getElementById('pageContent') as HTMLDivElement
 const btnHome  = document.getElementById('btnHome') as HTMLButtonElement
 const btnGoals =  document.getElementById('btnGoals') as HTMLButtonElement
 
+const goalService:GoalService = new GoalService();
 
 const loadPage = (page:string)=>{
   if (page==='home'){
-    pageContent.innerHTML = Home()
+    pageContent.innerHTML = HomePage()
   }else if (page==='goals'){
-    pageContent.innerHTML = Goal()
+    pageContent.innerHTML = GoalPage()
+    setUpGoalEvents(goalService)
+    renderGoalList(goalService)
+
   }
 }
 
