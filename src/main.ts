@@ -21,7 +21,8 @@ const loadPage = (page:string)=>{
   }
 }
 
-btnHome.addEventListener('click', ()=>{
+btnHome.addEventListener('click', (event)=>{
+  console.log(event)
   loadPage('home')
 })
 
