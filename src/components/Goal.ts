@@ -9,8 +9,8 @@ export const GoalPage = (): string => {
                 <input type="hidden" id="id" />
                 <input type="text" id="description" placeholder="Description" > 
                 <input type="number" id="hours" placeholder="Hours">
-                <button> Add </button>
-                <button id="btnReset"> Reset </button>
+                <button> Save </button>
+                <button id="btnReset" type="button"> Reset </button>
         </form> 
         <ul id="goalList"></ul> 
     `
@@ -72,6 +72,12 @@ export const setUpGoalEvents = (goalService:GoalService) => {
         const description = document.getElementById("description") as HTMLInputElement
         const hours = document.getElementById("hours") as HTMLInputElement
     
+        const resetForm =  ()=>{
+            ediId.value= ''
+            description.value =''
+            hours.value= ''
+        
+        }
 
         form.addEventListener('submit', (event) => {
             console.log(event)
@@ -80,22 +86,17 @@ export const setUpGoalEvents = (goalService:GoalService) => {
            
             if(ediId.value) {
                 console.log("Updating  " + ediId.value)
-                //goalService.updateGoal(id , description.value, Number(hours.value))
+                goalService.updateGoal(Number(ediId.value), description.value, Number(hours.value))
             }  else {
                 goalService.addGoal(description.value, Number(hours.value))
             }
-    
+            resetForm()
             renderGoalList(goalService)
         })
 
 
         const btnReset =  document.getElementById("btnReset") as HTMLButtonElement
-        btnReset.addEventListener('click', ()=>{
-            ediId.value= ''
-            description.value =''
-            hours.value= ''
-
-        })
+        btnReset.addEventListener('click', resetForm)
         
     }
 

@@ -5,6 +5,15 @@ export interface Goal{
 }
 
 export class GoalService{
+    updateGoal(id: number, description: string, hours: number) {
+    
+        const goal =  this.getGoalById(id)
+        if (goal){
+            goal.description = description
+            goal.hours =  hours
+        }
+
+    }
 
     private goals: Goal[] = []
     private nextId = 1
