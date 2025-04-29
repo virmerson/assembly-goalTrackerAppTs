@@ -25,5 +25,9 @@ export class GoalService{
 
     delete(id:number){
        this.goals = this.goals.filter( (goal)=> goal.id !== id)   
-    }   
+    } 
+    
+    getGoalById(id:number){
+        return this.goals.find( (g)=> g.id===id )
+    }
 }
